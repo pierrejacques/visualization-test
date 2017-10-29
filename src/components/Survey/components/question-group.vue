@@ -33,11 +33,10 @@ export default {
   },
   methods: {
     next(ans) {
-      const lastTime = this.$store.state.time
-      this.$store.commit('progress')
+      this.$store.commit('toc')
       this.result.push({
         isCorrect: ans === this.subquestion.a,
-        time: this.$store.state.time - lastTime
+        time: this.$store.state.dt
       })
       if (this.question.questions.length > 0) {
         this.subquestion = this.question.questions.shift()

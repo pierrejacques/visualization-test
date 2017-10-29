@@ -6,14 +6,17 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     time: 0,
+    dt: 0,
     progress: 0,
   },
   mutations: {
-    renew(state) {
+    tic(state) {
       state.time = moment().format('x')
     },
-    progress(state) {
+    toc(state) {
+      const lastTime = state.time
       state.time = moment().format('x')
+      state.dt = state.time - lastTime
       state.progress++
     },
     refresh(state) {

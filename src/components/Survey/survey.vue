@@ -43,7 +43,7 @@ export default {
   methods: {
     next(result) {
       if (this.isBlock) {
-        this.$store.commit('renew')
+        this.$store.commit('tic')
         this.isBlock = false
         this.question = this.data.shift()
       } else {
