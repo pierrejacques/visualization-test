@@ -47,10 +47,7 @@ export default {
         this.isBlock = false
         this.question = this.data.shift()
       } else {
-        this.result.push({
-          id: this.question.id,
-          result
-        })
+        this.result = [...this.result, ...result]
         this.progress += 3
         if (this.data.length > 0) {
           this.isBlock = true

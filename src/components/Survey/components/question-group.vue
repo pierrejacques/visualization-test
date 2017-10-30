@@ -1,6 +1,8 @@
 <template lang="html">
   <div class="question-group">
-    <img class="graph" :src = "src">
+    <div class="graph-wrap">
+      <img class="graph" :src = "src">
+    </div>
     <p class="question">{{subquestion.q}}</p>
     <button v-for="(item, idx) in subquestion.options"
             @click="next(idx + 1)"
@@ -35,6 +37,7 @@ export default {
     next(ans) {
       this.$store.commit('toc')
       this.result.push({
+        id: this.subquestion.src,
         isCorrect: ans === this.subquestion.a,
         time: this.$store.state.dt
       })
@@ -49,8 +52,14 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.graph-wrap {
+  max-height: 550px;
+  overflow: hidden;
+}
 .graph {
-  width: 60%;
+  position: relative;
+  top: -250px;
+  width: 1100px;
   margin: auto;
 }
 </style>

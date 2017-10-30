@@ -4,16 +4,16 @@
     <table class="result-table" cellspacing = 0>
       <thead>
         <th>图片编号</th>
-        <th>一</th>
-        <th>二</th>
-        <th>三</th>
+        <th>用时</th>
+        <th>是否准确</th>
       </thead>
       <tbody>
         <tr v-for="item in result">
           <td>{{item.id}}</td>
-          <td v-for="ans in item.result"
-              :class="{ false: !ans.isCorrect }">
-            {{ans.time}}
+          <td>{{item.time}}</td>
+          <td>
+            <span v-if="item.isCorrect">2</span>
+            <span v-else>0</span>
           </td>
         </tr>
       </tbody>
@@ -33,7 +33,7 @@ export default {
   created() {
     this.result = this.$route.params.result
     if (this.result) {
-      this.result.sort((a, b) => a.id > b.id)
+      this.result.sort((a, b) => (Number(a.id) > Number(b.id) ? 1 : -1))
     }
   }
 }
@@ -41,22 +41,22 @@ export default {
 
 <style lang="less" scoped>
 h1 {
-  margin: 50px 0 100px;
+  margin: 50px 0 10px;
 }
 .result-table {
   border-collapse: collapse;
-  width: 40%;
+  width: 400px;
   margin: auto;
   td, th {
     border: 1px solid #154;
     line-height: 30px;
     &:nth-of-type(1) { width: 20%; }
-    &:nth-of-type(2) { width: 27%; }
-    &:nth-of-type(3) { width: 27%; }
+    &:nth-of-type(2) { width: 40%; }
+    &:nth-of-type(3) { width: 40%; }
   }
 }
 button {
-  margin-top: 100px;
+  margin-top: 10px;
 }
 .false {
   background: #f77;
